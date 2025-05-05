@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Math Operation</title>
+    <style>
+        body {
+          font-family: "Segoe UI", sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 420px;
+        }
+
+        .container {
+          background: white;
+          padding: 2rem 3rem;
+          border-radius: 12px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          width: 90%;
+          max-width: 500px;
+        }
+
+        button {
+          margin: 10px;
+          padding: 10px 20px;
+          border: none;
+          border-radius: 8px;
+          background-color: #7C4585;
+          color: white;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #3D365C;
+          transition: all .3s ease;
+          transform: scale(1.1);
+        }
+
+        .output {
+          margin-top: 1.5rem;
+          font-size: 1.1rem;
+          color: #333;
+          text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Math Operation</h1>
+    <button onclick="calculate()">Calculate</button>
+    <div class="output" id="output"></div>
+</div>
+
+<script>
+    const outputDiv = document.getElementById('output');
+
+    const calculate = () => {
+      let num1, num2, operation;
+
+      do {
+        const input1 = prompt("Enter the first number:", num1 ?? "");
+        num1 = Number(input1);
+      } while (!Number.isFinite(num1));
+
+      do {
+        const input2 = prompt("Enter the second number:", num2 ?? "");
+        num2 = Number(input2);
+      } while (!Number.isFinite(num2));
+
+      const validOperations = ['+', '-', '*', '/'];
+      do {
+        operation = prompt("Enter the operation (+, -, *, /):", operation ?? "");
+      } while (!validOperations.includes(operation));
+
+      const result = performOperation(num1, num2, operation);
+
+      outputDiv.innerHTML = `<strong>Result:</strong> ${num1} ${operation} ${num2} = ${result}`;
+    };
+
+    const performOperation = (a, b, op) => {
+      switch (op) {
+        case '+': return a + b;
+        case '-': return a - b;
+        case '*': return a * b;
+        case '/': return b !== 0 ? (a / b).toFixed(2) : "Error: Division by zero";
+        default: return "Unknown operation";
+      }
+    };
+</script>
+</body>
+</html>
